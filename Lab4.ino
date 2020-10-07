@@ -25,12 +25,11 @@ void loop()
 
   //get's sensor value from the photoresistor
   int ldrStatus = analogRead(ldrPin);
-  //if the photoresitor value is over 150, continue with inner if...else statement
-  Serial.print(ldrStatus);
 
   //get's sensor value from the potentionmeter
   int sensorValue = analogRead(sensorPin);
 
+  //higher delay for blink speed
   int blinkSpeed = ldrStatus * 100;
 
   //devide by 4 and -5 to normalize maximize the values to 250 to assure function with if..else statements below
@@ -39,6 +38,7 @@ void loop()
   delay(100);
   Serial.println("LDR IS DARK, ACTIVATE LED");
   //depending on the value, it will light up different LED'S
+  //if LED's are light up, blink speed will be determine by the amount of light introduce to the photosensor.
   if (sensorValue < 50) {
     digitalWrite(yellowLED, HIGH);
     delay(blinkSpeed);
